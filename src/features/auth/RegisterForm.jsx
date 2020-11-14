@@ -21,9 +21,14 @@ function RegisterForm() {
   const onSubmit = (data) => {
     fetch(URL, {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
-    });
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
   };
 
   return (
@@ -63,6 +68,20 @@ function RegisterForm() {
           variant="outlined"
           inputRef={register}
           name="password"
+        />
+        <StyledTextField
+          id="outlined-basic"
+          label="Birthday"
+          variant="outlined"
+          inputRef={register}
+          name="birthday"
+        />
+        <StyledTextField
+          id="outlined-basic"
+          label="City"
+          variant="outlined"
+          inputRef={register}
+          name="city"
         />
         <p style={{ textAlign: "center" }}>
           <StyledButton
