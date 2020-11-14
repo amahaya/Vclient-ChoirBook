@@ -49,14 +49,8 @@ function LoginPage() {
             style={{ height: "100vh" }}
             spacing={0}
           >
-            <div style={{ width: "379px" }}>
-                <RegisterForm/>
-                <RegisterForm/>
-                <RegisterForm/>
-                <RegisterForm/>
-                <RegisterForm/>
-                <RegisterForm/>
-                <RegisterForm/>
+            <div style={{ width: "100%", padding: "30px" }}>
+              <RegisterForm />
             </div>
           </Grid>
         </Grid>
