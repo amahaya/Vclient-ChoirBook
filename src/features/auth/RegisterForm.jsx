@@ -26,18 +26,6 @@ function RegisterForm() {
     });
   };
 
-  //   function createGist(opts) {
-  //     ChromeSamples.log('Posting request to GitHub API...');
-  //     fetch('https://api.github.com/gists', {
-  //       method: 'post',
-  //       body: JSON.stringify(opts)
-  //     }).then(function(response) {
-  //       return response.json();
-  //     }).then(function(data) {
-  //       ChromeSamples.log('Created Gist:', data.html_url);
-  //     });
-  //   }
-
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -46,7 +34,7 @@ function RegisterForm() {
           label="Firstname"
           variant="outlined"
           inputRef={register}
-          name="firtName"
+          name="firstName"
         />
         <StyledTextField
           id="outlined-basic"
