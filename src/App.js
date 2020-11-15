@@ -5,12 +5,17 @@ import LoginPage from "./features/auth/LoginPage";
 import { AuthContext } from "./context/authContext";
 import Homepage from "../src/features/home/Homepage";
 import ProfilePage from "./features/profile/ProfilePage";
+import Navbar from "./features/nav/Navbar";
 
 function Layout(props) {
-  <div>
-    {" "}
-    <Route path={props.match.url + "/profil"} component={Profile} />{" "}
-  </div>;
+  return (
+    <div>
+      {" "}
+      <Navbar />
+      <Route path={props.match.url + "/profil"} component={ProfilePage} />{" "}
+      <Route path={props.match.url + "/home"} component={Homepage} />{" "}
+    </div>
+  );
 }
 
 function App(props) {
