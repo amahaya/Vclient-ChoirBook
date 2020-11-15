@@ -3,6 +3,7 @@ import { TextField } from "@material-ui/core";
 import styled from "styled-components";
 import { useForm, Controller } from "react-hook-form";
 import Button from "@material-ui/core/Button";
+import { useAuthContext } from "../../context/authContext";
 
 const StyledTextField = styled(TextField)`
   background-color: #efe8dc;
@@ -16,12 +17,14 @@ const StyledButton = styled(Button)`
   background-color: #a68445;
 `;
 const API = "http://localhost:1812/api";
-const URL = `${API}/users/register/`;
+const URL = `${API}/users/login/`;
 
-function RegisterForm(props) {
+function LoginForm() {
+  const tot = useAuthContext();
+  console.log(tot);
   const { register, handleSubmit, watch, errors } = useForm();
-  console.log(props);
   const onSubmit = (data) => {
+    tot.userHasAuthenticated(true);
     fetch(URL, {
       method: "post",
       headers: {
@@ -31,33 +34,13 @@ function RegisterForm(props) {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((res) => tot.userHasAuthenticated(true));
   };
 
   return (
     <>
+      {tot.isAuthenticated && <span>Je suis connecté </span>}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <StyledTextField
-          id="outlined-basic"
-          label="Firstname"
-          variant="outlined"
-          inputRef={register}
-          name="firstName"
-        />
-        <StyledTextField
-          id="outlined-basic"
-          label="Lastname"
-          variant="outlined"
-          inputRef={register}
-          name="lastName"
-        />
-        <StyledTextField
-          id="outlined-basic"
-          label="Username"
-          variant="outlined"
-          inputRef={register}
-          name="username"
-        />
         <StyledTextField
           id="outlined-basic"
           label="Email"
@@ -73,20 +56,7 @@ function RegisterForm(props) {
           name="password"
           type="password"
         />
-        <StyledTextField
-          id="outlined-basic"
-          label="Birthday"
-          variant="outlined"
-          inputRef={register}
-          name="birthday"
-        />
-        <StyledTextField
-          id="outlined-basic"
-          label="City"
-          variant="outlined"
-          inputRef={register}
-          name="city"
-        />
+
         <p style={{ textAlign: "center" }}>
           <StyledButton
             variant="contained"
@@ -102,4 +72,4 @@ function RegisterForm(props) {
   );
 }
 
-export default RegisterForm;
+export default LoginForm;

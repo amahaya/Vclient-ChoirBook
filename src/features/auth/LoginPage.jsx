@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import { Typography } from "@material-ui/core";
+import { Typography, Switch } from "@material-ui/core";
 import RegisterForm from "./RegisterForm";
+import LoginForm from "./LoginForm";
 
 function LoginPage() {
+  const [isChecked, setIsChecked] = useState(false);
+  const handleChange = (e) => setIsChecked(e.target.checked);
   return (
     <div>
       <Grid container spacing={0}>
@@ -46,11 +49,17 @@ function LoginPage() {
             container
             justify="center"
             alignContent="center"
-            style={{ height: "100vh" }}
+            style={{ minHeight: "100vh" }}
             spacing={0}
           >
             <div style={{ width: "100%", padding: "30px" }}>
-              <RegisterForm />
+              <Switch
+                checked={isChecked}
+                onChange={handleChange}
+                name="showLoginForm"
+                color="primary"
+              />
+              {isChecked && <RegisterForm />} {!isChecked && <LoginForm />}
             </div>
           </Grid>
         </Grid>
